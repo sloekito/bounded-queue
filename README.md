@@ -15,7 +15,7 @@ To use default options, simply run:
 gradle execute 
 ```
 
-### Instructions
+## Original Instructions
 This is an exercise to exemplify ones coding skills, ability to follow instructions, creativity, attention to detail, and problem solving skills.
 
 ## Java Exercise: Implement a Bounded Producer Consumer Queue
