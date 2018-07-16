@@ -14,6 +14,7 @@ public class ProducerConsumerService {
     private static final int NUMBER_OF_PRODUCERS_DEFAULT = 5;
     private static final int NUMBER_OF_CONSUMERS_DEFAULT = 5;
     private static final Logger LOGGER = Logger.getLogger(ProducerConsumerService.class.getName());
+    
     public static void main(String[] args) {
         
         Map<String, Object> appProps = parseProperties();
@@ -37,7 +38,7 @@ public class ProducerConsumerService {
    
         }
     }
-
+    
     static Map<String, Object> parseProperties() {
         Map<String, Object> appProps = new HashMap<>();
 

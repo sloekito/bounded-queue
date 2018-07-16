@@ -63,11 +63,4 @@ public class Queue<T> implements ProducerConsumerQueue<T> {
         return this.storage.size() >= this.capacity;
     }
 
-    // boolean isEmpty() {
-    // if (this.size == 0) {
-    // return true;
-    // }
-    // return false;
-    // }
-
 }
