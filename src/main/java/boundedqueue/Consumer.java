@@ -1,7 +1,9 @@
 package boundedqueue;
 
+import java.util.logging.Logger;
 
 public class Consumer<T> implements Runnable{
+    private static final Logger LOGGER = Logger.getLogger(Consumer.class.getName());
 
     private Queue<T> queue;
     
@@ -12,10 +14,9 @@ public class Consumer<T> implements Runnable{
     @Override
     public void run() {
         try{
-
             while(true) {
                 Object item = queue.dequeue();
-                System.out.println("Consumed " + item.toString());
+                LOGGER.info("Consumed " + item.toString());
 
             }
         }catch(Exception e) {
@@ -23,6 +24,4 @@ public class Consumer<T> implements Runnable{
         }
     }
 
-	private void consume(T dequeue) {
-	}
 }

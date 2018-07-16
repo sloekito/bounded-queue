@@ -1,11 +1,14 @@
 package boundedqueue;
-import java.util.LinkedList;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Queue<T> implements ProducerConsumerQueue<T> {
-    private LinkedList storage = new LinkedList();
+    private LinkedList storage = new java.util.LinkedList();
     private int capacity;
-    private int size;
+    private static final Logger LOGGER = Logger.getLogger(Queue.class.getName());
 
     Queue(int capacity) {
         this.capacity = capacity;
@@ -18,48 +21,53 @@ public class Queue<T> implements ProducerConsumerQueue<T> {
         T msg = null;
         while (storage.isEmpty()) {
             try {
-                System.out.println("Queue empty");
+                LOGGER.info(String.format("Queue empty, size: %d", this.size()));
                 wait();
             } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
+                LOGGER.log(Level.SEVERE, e.getMessage());
             }
         }
         msg = (T) storage.remove();
-        this.size--;
+        notifyAll();
         return msg;
     }
- 
+
     /**
-     * Add object to storage, block till the queue is non-full. 
-     * Notify any waiting threads that there is an object available.
+     * Add object to storage, block till the queue is non-full. Notify any waiting
+     * threads that there is an object available.
      */
-    public synchronized void enqueue(T item) {
+    public synchronized void enqueue(T o) {
         while (isFull()) {
             try {
-                System.out.println("Queue full");
+                LOGGER.info(String.format("Queue full, size: %d", this.size()));
                 wait();
             } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
+                LOGGER.log(Level.SEVERE, e.getMessage());
             }
         }
-        storage.add(item);
-        this.size++;
+        storage.add(o);
         notifyAll();
     }
 
     /*
-    * Helper method for getting the size of the queue
-    */
+     * Helper method for getting the size of the queue
+     */ 
     public int size() {
-        return size;
+        return storage.size();
     }
 
-    /* 
-    * Helper method for when the queue reaches capacity
-    */
-    private boolean isFull() {
-        return this.size >= this.capacity;
+    /*
+     * Helper method for when the queue reaches capacity
+     */
+    boolean isFull() {
+        return this.storage.size() >= this.capacity;
     }
 
+    // boolean isEmpty() {
+    // if (this.size == 0) {
+    // return true;
+    // }
+    // return false;
+    // }
 
 }

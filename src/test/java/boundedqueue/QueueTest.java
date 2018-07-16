@@ -30,8 +30,8 @@ public class QueueTest<T> {
     @Test
     public void testEnqueueMaxCapacity() throws InterruptedException {
         Queue<Object> queue = new Queue<>(5);
-
-        Producer producer = new Producer(queue);
+        int numberOfElements = 10;
+        Producer producer = new Producer(queue, numberOfElements);
         Thread mainRunner = new Thread(producer);
 
         new Thread(producer).start();

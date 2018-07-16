@@ -5,11 +5,15 @@
 ```
 gradle test
 ```
-#### To run test case (spin up 5 producer threads and 4 consimer threads)
+#### To run test case (spin up 5 producer threads and 5 consumer threads)
 ```
-gradle execute -PqueueBound=5 -PnumberOfElements=1000 -PnumberOfProducers=5 -PnumberOfConsumers=5 
+gradle execute -DqueueMaxLength=5 -DnumberOfElements=1000 -DnumberOfProducers=5 -DnumberOfConsumers=5 
 ```
 
+To use default options, simply run:
+```
+gradle execute 
+```
 
 ### Instructions
 This is an exercise to exemplify ones coding skills, ability to follow instructions, creativity, attention to detail, and problem solving skills.

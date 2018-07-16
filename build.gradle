@@ -35,6 +35,11 @@ artifacts {
 }
 
 task execute(type:JavaExec) {
-   main = 'boundedqueue.ProducerConsumerService'
-   classpath = sourceSets.main.runtimeClasspath
+    main = 'boundedqueue.ProducerConsumerService'
+    classpath = sourceSets.main.runtimeClasspath
+
+    args = ["--queueMaxLength", "--numberOfElements", "--numberOfProducers", "--numberOfConsumers"]
+    systemProperties = System.properties
+
+
 }
